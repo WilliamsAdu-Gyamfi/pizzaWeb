@@ -108,6 +108,7 @@ root.render(
 );
 */
 
+/*
 const App = function () {
   return (
     <div>
@@ -155,6 +156,98 @@ const Menu = function () {
     </div>
   );
 };
+
+const Pizza = function (props) {
+  console.log(props);
+  return (
+    <div className="pizza">
+      <img src={props.photoName} alt={props.name}></img>
+      <div>
+        <p>{props.ingredients}</p>
+        <span>{props.price}</span>
+      </div>
+    </div>
+  );
+};
+
+const Footer = function () {
+  return <footer className="footer">WE ARE OPEN!</footer>;
+};
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
+);
+*/
+
+// RENDERING LISTS
+const App = function () {
+  return (
+    <div>
+      <Header />
+
+      <Menu />
+      <Footer />
+    </div>
+  );
+};
+
+const Header = function () {
+  return (
+    <header className="header">
+      <h1>Pizza</h1>
+    </header>
+  );
+};
+
+const Menu = function () {
+  return (
+    <div className="menu">
+      <h2>Our Menu</h2>
+
+      {/*
+          THIS METHOD WORKS BUT NOT PROFESSIONAL
+      <div>
+        {pizzaData.map((pizza) => (
+          <Pizza
+            name={pizza.name}
+            photoName={pizza.photoName}
+            ingredients={pizza.ingredients}
+          />
+        ))}
+        ,
+      </div>
+*/}
+
+      {/*
+      <Pizza
+        name="Focaccia"
+        ingredients="Bread with italian olive oil and rosemary"
+        photoName="pizzas/focaccia.jpg"
+        alt="focaccia"
+        price={10}
+      />
+      <Pizza
+        name="Pizza Margherita"
+        ingredients="Tomato and mozarella"
+        photoName="pizzas/margherita.jpg"
+        alt="margherita"
+        price={15}
+      />
+      <Pizza
+        name="Pizza Spinaci"
+        ingredients="Tomato, mozarella, spinach, and ricotta cheese"
+        photoName="pizzas/spinaci.jpg"
+        alt="spinaci"
+        price={16}
+      />
+      */}
+    </div>
+  );
+};
+
 const Pizza = function (props) {
   console.log(props);
   return (
