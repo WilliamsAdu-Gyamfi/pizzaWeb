@@ -113,7 +113,6 @@ const App = function () {
   return (
     <div>
       <Header />
-
       <Menu />
       <Footer />
     </div>
@@ -146,13 +145,7 @@ const Menu = function () {
         alt="margherita"
         price={15}
       />
-      <Pizza
-        name="Pizza Spinaci"
-        ingredients="Tomato, mozarella, spinach, and ricotta cheese"
-        photoName="pizzas/spinaci.jpg"
-        alt="spinaci"
-        price={16}
-      />
+  
     </div>
   );
 };
@@ -187,7 +180,6 @@ const App = function () {
   return (
     <div>
       <Header />
-
       <Menu />
       <Footer />
     </div>
@@ -208,20 +200,9 @@ const Menu = function () {
       <h2>Our Menu</h2>
 
       {/*
-          THIS METHOD WORKS BUT NOT PROFESSIONAL
-      <div>
-        {pizzaData.map((pizza) => (
-          <Pizza
-            name={pizza.name}
-            photoName={pizza.photoName}
-            ingredients={pizza.ingredients}
-          />
-        ))}
-        ,
-      </div>
-*/}
 
-      {/*
+      AT FIRST.........
+
       <Pizza
         name="Focaccia"
         ingredients="Bread with italian olive oil and rosemary"
@@ -244,6 +225,40 @@ const Menu = function () {
         price={16}
       />
       */}
+
+      {/*
+          THIS METHOD WORKS BUT NOT PROFESSIONAL
+      <div>
+        {pizzaData.map((pizza) => (
+          <Pizza
+            name={pizza.name}
+            photoName={pizza.photoName}
+            ingredients={pizza.ingredients}
+          />
+        ))}
+        ,
+      </div>
+
+      const Pizza = function (props) {
+  console.log(props);
+  return (
+    <div className="pizza">
+      <img src={props.photoName} alt={props.name}></img>
+      <div>
+        <p>{props.ingredients}</p>
+        <span>{props.price}</span>
+      </div>
+    </div>
+  );
+};
+*/}
+
+      {/*Proper Rendering */}
+      <div>
+        {pizzaData.map((pizza) => (
+          <Pizza pizzaObj={pizza} key={pizza.name} />
+        ))}
+      </div>
     </div>
   );
 };
@@ -252,10 +267,10 @@ const Pizza = function (props) {
   console.log(props);
   return (
     <div className="pizza">
-      <img src={props.photoName} alt={props.name}></img>
+      <img src={props.pizzaObj.photoName} alt={props.pizzaObj.name}></img>
       <div>
-        <p>{props.ingredients}</p>
-        <span>{props.price}</span>
+        <p>{props.pizzaObj.ingredients}</p>
+        <span>{props.pizzaObj.price}</span>
       </div>
     </div>
   );
