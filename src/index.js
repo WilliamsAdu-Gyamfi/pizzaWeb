@@ -306,9 +306,11 @@ const Header = function () {
 
 const Menu = function () {
   const pizzas = pizzaData;
-  //const pizzas = []
+  // const pizzas = [];
   const numPizzas = pizzas.length;
 
+  /*
+  //CONDITIONAL RENDERING WITH AND(&&) OPERATOR
   return (
     <div className="menu">
       <h2>Our Menu</h2>
@@ -320,6 +322,25 @@ const Menu = function () {
             <Pizza pizzaObj={pizza} key={pizza.name} />
           ))}
         </ul>
+      )}
+    </div>
+  );
+  */
+
+  //CONDITIONAL RENDERING WITH TENARY(?) OPERATOR
+  return (
+    <div className="menu">
+      <h2>Our Menu</h2>
+
+      {numPizzas > 0 ? (
+        <ul className="pizzas">
+          {" "}
+          {pizzaData.map((pizza) => (
+            <Pizza pizzaObj={pizza} key={pizza.name} />
+          ))}
+        </ul>
+      ) : (
+        <p>WE ARE STILL WORKING ON OUR MENU. COME BACK LATER</p>
       )}
     </div>
   );
@@ -345,6 +366,7 @@ const Footer = function () {
   const closeHour = 22;
   const isOpen = hour >= openHour && hour <= closeHour;
 
+  /*
   return (
     <footer className="footer">
       {isOpen && (
@@ -352,6 +374,23 @@ const Footer = function () {
           <p>We are open until {closeHour} : 00. come visit us</p>
           <button className="btn">Order</button>
         </div>
+      )}
+    </footer>
+  );
+  */
+
+  //CONDITIONAL RENDERING WITH TENARY(?) OPERATOR
+  return (
+    <footer className="footer">
+      {isOpen ? (
+        <div className="order">
+          <p>We are open until {closeHour} : 00. come visit us</p>
+          <button className="btn">Order</button>
+        </div>
+      ) : (
+        <p>
+          WE ARE OPEN BETWEEN {openHour}:00 AND {closeHour}:00
+        </p>
       )}
     </footer>
   );
