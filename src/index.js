@@ -127,6 +127,7 @@ const Header = function () {
   );
 };
 
+// PROPS
 const Menu = function () {
   return (
     <div className="menu">
@@ -176,6 +177,7 @@ root.render(
 */
 
 // RENDERING LISTS
+/*
 const App = function () {
   return (
     <div>
@@ -224,9 +226,9 @@ const Menu = function () {
         alt="spinaci"
         price={16}
       />
-      */}
+      */
 
-      {/*
+/*
           THIS METHOD WORKS BUT NOT PROFESSIONAL
       <div>
         {pizzaData.map((pizza) => (
@@ -234,12 +236,12 @@ const Menu = function () {
             name={pizza.name}
             photoName={pizza.photoName}
             ingredients={pizza.ingredients}
+            price = {pizza.price}
           />
         ))}
         ,
       </div>
-
-      const Pizza = function (props) {
+const Pizza = function (props) {
   console.log(props);
   return (
     <div className="pizza">
@@ -251,12 +253,13 @@ const Menu = function () {
     </div>
   );
 };
-*/}
+*/
 
-      {/*Proper Rendering */}
+/*Proper Rendering */
+/*
       <div>
         {pizzaData.map((pizza) => (
-          <Pizza pizzaObj={pizza} key={pizza.name} />
+          <Pizza pizzaObj={pizza} key={pizza.name} /> // looped through all the pizza Data(name, ingredients, price, photo)
         ))}
       </div>
     </div>
@@ -266,18 +269,92 @@ const Menu = function () {
 const Pizza = function (props) {
   console.log(props);
   return (
-    <div className="pizza">
+    <li className="pizza">
       <img src={props.pizzaObj.photoName} alt={props.pizzaObj.name}></img>
       <div>
         <p>{props.pizzaObj.ingredients}</p>
         <span>{props.pizzaObj.price}</span>
       </div>
+    </li>
+  );
+};
+
+/*
+const Footer = function () {
+  return <footer className="footer">WE ARE OPEN!</footer>;
+};
+*/
+
+//  CONDITIONAL RENDERING
+const App = function () {
+  return (
+    <div>
+      <Header />
+      <Menu />
+      <Footer />
     </div>
   );
 };
 
+const Header = function () {
+  return (
+    <header className="header">
+      <h1>Pizza</h1>
+    </header>
+  );
+};
+
+const Menu = function () {
+  const pizzas = pizzaData;
+  //const pizzas = []
+  const numPizzas = pizzas.length;
+
+  return (
+    <div className="menu">
+      <h2>Our Menu</h2>
+
+      {numPizzas > 0 && (
+        <ul className="pizzas">
+          {" "}
+          {pizzaData.map((pizza) => (
+            <Pizza pizzaObj={pizza} key={pizza.name} />
+          ))}
+        </ul>
+      )}
+    </div>
+  );
+};
+const Pizza = function (props) {
+  console.log(props);
+  return (
+    <li className="pizza">
+      <img src={props.pizzaObj.photoName} alt={props.pizzaObj.name}></img>
+      <div>
+        <h3>{props.pizzaObj.name}</h3>
+        <p>{props.pizzaObj.ingredients}</p>
+        <span>{props.pizzaObj.price}</span>
+      </div>
+    </li>
+  );
+};
+
 const Footer = function () {
-  return <footer className="footer">WE ARE OPEN!</footer>;
+  const hour = new Date().getHours();
+  console.log(hour);
+  const openHour = 8;
+  const closeHour = 22;
+  const isOpen = hour >= openHour && hour <= closeHour;
+
+  return (
+    <footer className="footer">
+      {isOpen && (
+        <div className="order">
+          <p>We are open until {closeHour} : 00. come visit us</p>
+          <button className="btn">Order</button>
+        </div>
+      )}
+    </footer>
+  );
 };
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -286,3 +363,6 @@ root.render(
     <App />
   </React.StrictMode>,
 );
+
+const hasCar = true;
+console.log(hasCar && "Accepted");
